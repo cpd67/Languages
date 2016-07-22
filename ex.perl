@@ -3,7 +3,7 @@
 #Practice perl script. 
 
 =begin
-This is a big ass comment. 
+This is a big comment. 
 Like a multi-lined comment in C++.
 Or Java.
 Or practically *ANY* language out there.
