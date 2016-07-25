@@ -45,3 +45,14 @@ while count < 10:
 	#No ++ operator :( Have to do this for incrementation
 	count += 1
 
+#Multiple assignment statements (which are COOL)
+a,b = 4, 5
+
+print("a is "+ str(a))
+print("b is " + str(b))
+print("Swapping them...")
+
+a,b = b,a
+
+print("a is now " + str(a))
+print("b is now " + str(b))
