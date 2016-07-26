@@ -2,6 +2,7 @@
 
 #Simple Python program, using basic control constructs
 #and repetition constructs.
+#https://docs.python.org/3/tutorial/
 
 #Like a #include...
 import sys
@@ -13,6 +14,8 @@ num2 = 4
 num3 = num + num2
 
 print(num3)
+
+print("--------------------------------------")
 
 num4 = num - num2
 num5 = num * num2
@@ -38,12 +41,32 @@ for n in nums:
 	else:
 		print("No idea...")
 
+print("--------------------------------------")
+
+#Modifying the sequence inside of the for loop
+# = Make a slice copy of the list to iterate over,
+#Then, modify the original inside of the loop.
+#Smart. It prevents you from modifying the original 
+#while also looping through it, because that could be BAD.
+for n in nums[:]:
+	if n > 4:
+		#Insert the number at position 0 in the list
+		nums.insert(0, n)
+
+#Print out the new number list
+for n in nums:
+	print(str(n))
+
+print("--------------------------------------")
+
 #While loop construct
 count = 0
 while count < 10:
 	print("COUNTING IS FUN!")
 	#No ++ operator :( Have to do this for incrementation
 	count += 1
+
+print("--------------------------------------")
 
 #Multiple assignment statements (which are COOL)
 a,b = 4, 5
@@ -56,3 +79,6 @@ a,b = b,a
 
 print("a is now " + str(a))
 print("b is now " + str(b))
+
+print("--------------------------------------")
+
