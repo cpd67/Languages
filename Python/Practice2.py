@@ -11,6 +11,7 @@
 lis1 = [1, 2, 3, 4, 6, 8, 9, 12]
 
 print("-------------------------------")
+print("(Continue example)")
 
 #continue statement goes to the next iteration of the loop.
 #This is also in C.
@@ -25,5 +26,6 @@ for n in lis1:
 	print("Odd number")
 
 print("-------------------------------")
+print("Function example #1")
 
 
