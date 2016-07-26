@@ -3,6 +3,9 @@
 #Simple Python program, using basic control constructs
 #and repetition constructs.
 #List slicing...
+
+#The output looks nicer when using python3
+
 #https://docs.python.org/3/tutorial/
 
 #Like a #include...
