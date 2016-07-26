@@ -2,6 +2,7 @@
 
 #Simple Python program, using basic control constructs
 #and repetition constructs.
+#List slicing...
 #https://docs.python.org/3/tutorial/
 
 #Like a #include...
@@ -13,10 +14,11 @@ num = 1
 num2 = 4
 num3 = num + num2
 
+print("(First print)")
+
 print(num3)
 
 print("--------------------------------------")
-
 num4 = num - num2
 num5 = num * num2
 num6 = num / num2
@@ -27,6 +29,7 @@ nums = [num3, num4, num5, num6, num7]
 
 #For loop construct
 #Similar to a for-each loop in Java 5
+print("(For loop with if-statement)")
 for n in nums:
 	#If-statement construct
 	#No implicit type casting; have to do explicit type casting
@@ -41,7 +44,15 @@ for n in nums:
 	else:
 		print("No idea...")
 
+	#To add...no switch statement exists in Python. 
+	#The if-elif is a substitute. 
+	#Makes sense. Usually a switch statement 
+	#Requires the compiler to create a jump table.
+	#Python's interpreted, so....
+
 print("--------------------------------------")
+
+print("(Modifying sequence inside of for loop)")
 
 #Modifying the sequence inside of the for loop
 # = Make a slice copy of the list to iterate over,
@@ -55,9 +66,11 @@ for n in nums[:]:
 
 #Print out the new number list
 for n in nums:
-	print(str(n))
+	print(n)
 
 print("--------------------------------------")
+
+print("(While loop)")
 
 #While loop construct
 count = 0
@@ -68,17 +81,61 @@ while count < 10:
 
 print("--------------------------------------")
 
+print("(Multiple assignment)")
+
 #Multiple assignment statements (which are COOL)
 a,b = 4, 5
 
-print("a is "+ str(a))
-print("b is " + str(b))
+print("a is ", a)
+print("b is ", b)
 print("Swapping them...")
 
 a,b = b,a
 
-print("a is now " + str(a))
-print("b is now " + str(b))
+#Can print a number with a String using this syntax.
+print("a is now ", a)
+print("b is now ", b)
 
 print("--------------------------------------")
 
+print("(List slicing #1)")
+
+#Examples of list slicing
+lis1 = [2, 4, 6, 8, 1, 3, 5, 7]
+lis2 = ['a', 'b', 'c', 'd', 'e']
+
+#This splits lis1 and gets the first 4 numbers.
+#One way to think of splitting:
+# list[start:end] == end - start elements from list. 
+lis3 = lis1[0:4]
+for n in range(len(lis3)): #This syntax allows you to print both the index and element
+	print(n, lis3[n])	   #of the list
+
+print("--------------------------------------")
+
+print("(List slicing #2)")
+
+#Gives you the elements from 0 - 3
+lis4 = lis1[:4]
+for n in range(len(lis4)):
+	print(n, lis4[n])
+
+print("--------------------------------------")
+
+print("(List slicing #3)")
+
+#Gives you the elements from 1 - (length of lis1 - 1)
+lis5 = lis1[1:]
+for n in range(len(lis5)):
+	print(n, lis5[n])
+
+print("--------------------------------------")
+
+print("(List slicing #4)")
+
+#Gives you the whole list again
+lis6 = lis1[:]
+for n in range(len(lis6)):
+	print(n, lis6[n])
+
+print("--------------------------------------")
