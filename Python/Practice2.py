@@ -36,7 +36,7 @@ def fib(n):
 		a, b = b, a+b
 	print()
 
-#Call the puppy we just defined
+#Call the puppy we just defined.
 fib(100000)
 
 #Also learning about symbol tables.
