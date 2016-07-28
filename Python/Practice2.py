@@ -28,4 +28,22 @@ for n in lis1:
 print("-------------------------------")
 print("Function example #1")
 
+def fib(n):
+	"""This is a docstring."""
+	a, b = 0, 1
+	while a < n:
+		print(a, end=' ')
+		a, b = b, a+b
+	print()
+
+#Call the puppy we just defined
+fib(100000)
+
+#Also learning about symbol tables.
+#Apparently, variable assignments in a function store the value in a local one.
+#Variable references look in the local, then local of enclosing functions, then in 
+#global, and lastly the table of built-in names. 
+#Also, Python has call-by-value parameter passing.
+print("-------------------------------")
+
 
