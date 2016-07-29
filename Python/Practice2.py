@@ -46,4 +46,26 @@ fib(100000)
 #Also, Python has call-by-value parameter passing.
 print("-------------------------------")
 
+#Function example 2
+#Didn't need to look this up ;-)
+def maxLis(lis1):
+	"""Gets the maximum from a sequence of numbers"""
+	m1 = -999999
+	for n in lis1:
+		if n > m1:
+			m1 = n
+	return m1
+
+#Test
+lis = [4, 8, 100, 0]
+m2 = maxLis(lis)
+
+print("Lis values: ")
+
+for n in lis:
+	print(n, end=",")
+
+print()
+print("The max of lis is: ", m2)		
+
 
