@@ -1,7 +1,5 @@
 #Python program for counting the number of times a letter appears in a string.
 
-#Could return a tuple that gives you the index of the list
-#and the value
 #Also, learned that locals are NOT reassigned in for loop...
 def findMax(lis):
 	"""Finds the max element in a list."""
