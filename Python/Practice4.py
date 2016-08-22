@@ -9,7 +9,7 @@ print("(Pass example)")
 #The pass keyword is used as a placeholder when you don't
 #have the body of the function made yet...
 def countUpTo(n):
-	pass;
+	pass
 
 #Every function returns something in Python, surprisingly.
 #Even those that don't return something explicitly.
