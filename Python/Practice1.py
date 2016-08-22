@@ -2,7 +2,7 @@
 
 #Simple Python program, using basic control constructs
 #and repetition constructs.
-#List slicing...
+#List slicing = makes a new list
 
 #The output looks nicer when using python3
 
