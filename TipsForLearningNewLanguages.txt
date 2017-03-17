@@ -1,0 +1,16 @@
++ Determine what paradigms the language falls into (functional, imperative, OO, ...).
+
++ You should find out the following things for a new language:
+  1). Control structures (if-else, switch (if present), ...).
+  2). Repetition structures (for, foreach (if present), ...).
+  3). Static or dynamically typed.
+  4). How to make functions.
+  5). Static or dynamic function calls.
+  6). Recursion. 
+  7). Classes (if applicable). 
+  8). Inheritance, Polymorphism, Abstraction, Encapsulation (if applicable). 
+
++ Find out strengths and weaknesses for the language (what does it work well with, what doesn't it work well with, ...).
+
++ Come up with some side projects to use the language in. 
+
