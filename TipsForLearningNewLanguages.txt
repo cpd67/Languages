@@ -1,5 +1,7 @@
 + Determine what paradigms the language falls into (functional, imperative, OO, ...).
 
++ Compiled, or interpreted? 
+
 + You should find out the following things for a new language:
   1). Control structures (if-else, switch (if present), ...).
   2). Repetition structures (for, foreach (if present), ...).
