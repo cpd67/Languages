@@ -14,7 +14,8 @@ class MegaGreeter
     if @names.nil?
       puts "..."
     elsif @names.respond_to?("each")
-      # Iterate through the list of names
+      # each is a method that accepts a block of code
+      # and runs that block of code for each element in a list
       @names.each do |name|
         puts "Hello, #{name}!"
       end

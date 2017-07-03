@@ -1,9 +1,9 @@
 #!/bin/perl
 
-#Practice perl script. 
+#Practice perl script.
 
 =begin
-This is a big comment. 
+This is a big comment.
 Like a multi-lined comment in C++.
 Or Java.
 Or practically *ANY* language out there.
@@ -17,7 +17,7 @@ $salary = 4.25; #Floating-point scalar
 #Have to escape the $ character ("\$").
 print "\n$name"." is ".$age." years old and makes "."\$"."$salary"." an hour.\n";
 
-print "How the heck does a lobster make \$4.25 an hour?\n\n";
+print "How the heck does a lobster make $salary an hour?\n\n";
 
 #Practice with special escape characters
 $practice1 = "\UThis should all be uppercased.\n";
@@ -27,7 +27,7 @@ $practice4 = "This is an example of variable interpolation: $practice1";
 $practice5 = "This line contains a bell\a.\n";
 
 #Learned that the last statement in a Perl program doesn't need a semicolon.
-#Like PHP. 
+#Like PHP.
 print "$practice1"."$practice2"."$practice3"."$practice4"."$practice5\n";
 print "It sounded like a drop of water.\nThat's probably what that sound is after doing tab completion in the command-line.\n\nLearning stuff. Like a turtle.\n\n";
 
