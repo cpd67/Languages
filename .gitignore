@@ -2,4 +2,6 @@
 ~
 
 #C++ object files and executable
-*.o main 
+*.o 
+
+main 
