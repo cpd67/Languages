@@ -1,5 +1,5 @@
 #PLEASE ignore backups
 ~
 
-# C++ object files
+#C++ object files and executable
 *.o main 
