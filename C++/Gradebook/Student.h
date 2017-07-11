@@ -1,4 +1,7 @@
 
+#ifndef STUDENT_H_
+#define STUDENT_H_
+
 #include <iostream>
 using namespace std;
 
@@ -16,4 +19,7 @@ private:
   float * myScores;
   int myNumAssessments;
   void computeAverage();
+  friend class StudentTester; 
 };
+
+#endif /* STUDENT_H_ */
