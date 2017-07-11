@@ -2,7 +2,7 @@
 #define STUDENT_TESTER_H_
 
 #include <iostream>
-#include <assert>
+#include <cassert>
 using namespace std;
 
 class StudentTester {
