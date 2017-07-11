@@ -1,7 +1,5 @@
-#PLEASE ignore backups
-~
+# PLEASE ignore backups
+*~
 
-#C++ object files and executable
+# C++ object files and executable
 *.o 
-
-main 
