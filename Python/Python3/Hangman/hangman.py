@@ -1,8 +1,18 @@
 
+
+# WILL BE CHANGED INTO A CLASS LATER
+
 import subprocess
 
-# Global for the number of guesses that the player has accumulated.
-numGuesses = 0
+# To store state...
+# correctGuesses = [], where the size of the list is the length of the chosen word.
+# At the start, each element will be "_"
+# For each correct guess, the element which corresponds to the position in the word
+# in which the letter is found will be the correct letter.
+# So, if a user has the word "Hangman" and guesses the letters 'a' and 'h',
+# correctGuesses would look something like:
+# ["h", "a", "_", "_", "_" "a", "_"]
+# and that would be printed out whenever you show the user their progress.
 
 # Main logic:
 # Loop:
@@ -57,12 +67,35 @@ def checkMenuInput():
 
 # Play the actual game
 def playGame():
-    # TODO: Replace with an I/O call to read a random word from a text file.
-    word = "Test"
 
-    while numGuesses < 7:
-        # Show drawing:
-        subprocess.call(["cat", "./Drawing/hangman" + str(numGuesses) + ".txt"])
+    #http://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+    # Read a word from the text file
+    fileHandler = open("./words.txt", "r")
+
+    # Read the first word of the word.txt file
+    # TODO: Replace this with reading a random word from the text file.
+    word = fileHandler.readline()
+
+    fileHandler.close()
+
+    # Number of guesses that the player has accumulated.
+    numGuesses = 0
+
+    # Inspiration obtained from: https://stackoverflow.com/questions/18098326/dynamically-declare-create-lists-in-python
+    # Use a list comp to create a list of blanks
+    # based off the size of the chosen word.
+    # (WILL BE MOVED INTO A FUNCTION LATER)
+    correctGuesses = ["_" for n in range((len(word))) ]
+
+    for i in correctGuesses:
+        print(i, end=" ")
+
+    print("\n")
+
+    while numGuesses < 6:
+        # Show the first hangman picture.
+        subprocess.call(["cat", "./Drawings/hangman0.txt"])
+
         # Get input
         x = str(input("Enter a letter: "))
         # If letter was in the word
@@ -73,22 +106,17 @@ def playGame():
             # Increment number of guesses, show hangman drawing
             print("Damn it! That's wrong!")
             numGuesses = numGuesses + 1
-    # 1. Read a random word from a text file.
-    # 2. Display the first hangman.
-    # 3. For each letter in the word:
-    #     3a. Show '_ '
-    # 4. While the user hasn't guessed 7 times:
-    #     4a. Show the letters of the alphabet.
-    #     4b. Ask the user for input.
-    #     4c. Check the input:
-    #         4d. If the input is a letter of the word:
-    #             4da. Loop through the word and print out the letter in the
-    #                  corresponding spots.
-    #             Else:
-    #             Print next hangman picture.
+            subprocess.call(["cat", "./Drawings/hangman" + str(numGuesses) + ".txt"])
 
 def showHelp():
     pass
+
+# Will be used to show the progress of the user
+def showProgress():
+    for i in correctGuesses:
+        print(i, end="")
+        if i == len(correctGuesses):
+            print("\n")
 
 if __name__ == "__main__":
     print("Running hangman tests...")
