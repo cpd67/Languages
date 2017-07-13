@@ -1,8 +1,10 @@
 
 
-# WILL BE CHANGED INTO A CLASS LATER
+# TODO: Make game code more efficient...
 
 import subprocess
+import linecache
+import random
 
 # To store state...
 # correctGuesses = [], where the size of the list is the length of the chosen word.
@@ -41,88 +43,140 @@ import subprocess
 # Execute the cowsay program from a Python script
 # subprocess.call(["cowsay", "hi"])
 
-# Menu for Hangman game
-def printMenu():
-    print("Here are your options:")
-    print("1. Play!")
-    print("2. Help")
-    print("3. Exit")
+class Hangman:
 
-# Determine if user input is valid
-def checkMenuInput():
-    while True:
-        userInput = str(input("Enter your choice: "))
-        if userInput not in ("1", "2", "3"):
-            print("Invalid input!")
-            printMenu()
-        elif userInput == "1":
-            print("Start!")
-            break
-        elif userInput == "2":
-            print("Help!")
-            break
-        elif userInput == "3":
-            print("Exit!")
-            break
+    # Class variables go here...
 
-# Play the actual game
-def playGame():
+    # Constructor for the Hangman class
+    def __init__(self):
+        # Instance variables...
+        self.correctGuesses = []
+        self.chosenWord = ""
+        self.fileSizeByLines = 0
+        self.numWrongGuesses = 0
 
-    #http://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
-    # Read a word from the text file
-    fileHandler = open("./words.txt", "r")
+    # Get file size, choose random word, etc...
+    def setup(self):
 
-    # Read the first word of the word.txt file
-    # TODO: Replace this with reading a random word from the text file.
-    word = fileHandler.readline()
+        randNum = 0
 
-    fileHandler.close()
+        # https://stackoverflow.com/questions/19001402/how-to-count-the-total-number-of-lines-in-a-text-file-using-python
+        # https://docs.python.org/3.3/tutorial/inputoutput.html
+        # The 'with' keyword has the advantage that the file is properly closed after its suite is finished.
+        with open('./words.txt', 'r') as fileHandler:
+            # Get the number of lines currently in the text file.
+            self.fileSizeByLines = sum(1 for x in fileHandler)
 
-    # Number of guesses that the player has accumulated.
-    numGuesses = 0
+        randNum = random.randrange(1, self.fileSizeByLines)
 
-    # Inspiration obtained from: https://stackoverflow.com/questions/18098326/dynamically-declare-create-lists-in-python
-    # Use a list comp to create a list of blanks
-    # based off the size of the chosen word.
-    # (WILL BE MOVED INTO A FUNCTION LATER)
-    correctGuesses = ["_" for n in range((len(word))) ]
+        # https://docs.python.org/3/library/linecache.html#module-linecache
+        # Get random word from the text file.
+        self.chosenWord = linecache.getline('./words.txt', randNum)
 
-    for i in correctGuesses:
-        print(i, end=" ")
+        # Inspiration obtained from: https://stackoverflow.com/questions/18098326/dynamically-declare-create-lists-in-python
+        # Use a list comp to create a list of blanks
+        # based off the size of the chosen word.
+        self.correctGuesses = ["_" for n in range((len(self.chosenWord)-1))]
 
-    print("\n")
+    # Menu for Hangman game
+    def printMenu(self):
+        print("Here are your options:")
+        print("1. Play!")
+        print("2. Help")
+        print("3. Exit")
+        self.checkMenuInput()
 
-    while numGuesses < 6:
-        # Show the first hangman picture.
-        subprocess.call(["cat", "./Drawings/hangman0.txt"])
+    # Determine if user input at menu is valid
+    def checkMenuInput(self):
+        while True:
+            userInput = str(input("Enter your choice: "))
+            if userInput not in ("1", "2", "3"):
+                print("Invalid input!")
+                self.printMenu()
+            elif userInput == "1":
+                print("Start!")
+                break
+            elif userInput == "2":
+                print("Help!")
+                break
+            elif userInput == "3":
+                print("Exit!")
+                break
 
-        # Get input
-        x = str(input("Enter a letter: "))
-        # If letter was in the word
-        if x in word:
-            # Display letters
-            print("You got one letter right!")
+    # Check if the user entered a correct letter
+    def checkUserLetter(self, letter):
+        letterCorrect = False
+
+        # Loop through the chosen word, checking each letter
+        for l in range(len(self.chosenWord)):
+            # If the user guessed a letter correctly...
+            if letter == self.chosenWord[l]:
+                # Reveal its location in the game
+                self.correctGuesses[l] = letter
+                letterCorrect = True
+
+        # If the user guessed a letter incorrectly, increment wrong guesses.
+        if not letterCorrect:
+            self.numWrongGuesses = self.numWrongGuesses + 1
+
+    # Start game
+    def playGame(self):
+
+        # Setup new game
+        self.setup()
+
+        # Main game loop:
+        while not (self.isGameOver()):
+
+            # Show the Hangman picture
+            subprocess.call(["cat", "./Drawings/hangman" + str(self.numWrongGuesses) + ".txt"])
+
+            # Show user progress
+            self.showProgress()
+
+            # Get user input
+            userInput = str(input("Enter a letter: "))
+
+            # Check the input
+            self.checkUserLetter(userInput)
+
+        print("Game over!")
+        
+        if (self.numWrongGuesses == 6):
+            subprocess.call(["cat", "./Drawings/gameover.txt"])
+            print("You lose!")
+            print("The word was: " + self.chosenWord)
         else:
-            # Increment number of guesses, show hangman drawing
-            print("Damn it! That's wrong!")
-            numGuesses = numGuesses + 1
-            subprocess.call(["cat", "./Drawings/hangman" + str(numGuesses) + ".txt"])
+            print("You win!")
 
-def showHelp():
-    pass
 
-# Will be used to show the progress of the user
-def showProgress():
-    for i in correctGuesses:
-        print(i, end="")
-        if i == len(correctGuesses):
-            print("\n")
+    # Determine if the game is over
+    def isGameOver(self):
+        # Not exceeding the number of wrong guesses means game is not over
+        # Any blank spaces also means the game is not over
+        if (self.numWrongGuesses) < 6 and "_" in self.correctGuesses:
+            return False
+
+        return True
+
+    def showHelp(self):
+        pass
+
+    # Show the progress of the user
+    def showProgress(self):
+        for i in range(len(self.correctGuesses)):
+            print(self.correctGuesses[i], end=" ")
+        print("\n")
 
 if __name__ == "__main__":
     print("Running hangman tests...")
-    # Test 1: Printing the menu.
-    printMenu()
-    # Test 2: Checking user input.
-    checkMenuInput()
-    # Test 3a: Testing main game loop logic, part 1.
-    playGame()
+
+    hang1 = Hangman()
+
+    # Test 1 & 2: Printing the menu and checking the input
+    hang1.printMenu()
+    # Test 3a: Testing the setup phase of the game.
+#    hang1.setup() (WORKS)
+
+    # Test 4: Gameplay
+    hang1.playGame()
