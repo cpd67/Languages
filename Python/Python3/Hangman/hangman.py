@@ -10,16 +10,17 @@ class Hangman:
 
     # Class variables go here...
 
-    # Constructor for the Hangman class
     def __init__(self):
+        """ Constructor for the Hangman class. """
+
         # Instance variables...
         self.correctGuesses = []
         self.chosenWord = ""
         self.fileSizeByLines = 0
         self.numWrongGuesses = 0
 
-    # Get file size, choose random word, etc...
     def setup(self):
+        """ Set up a new Hangman game. """
 
         subprocess.call(["clear"])
 
@@ -43,8 +44,9 @@ class Hangman:
         # based off the size of the chosen word.
         self.correctGuesses = ["_" for n in range((len(self.chosenWord)-1))]
 
-    # Menu for Hangman game
     def printMenu(self):
+        """ Show the menu for Hangman. """
+
         subprocess.call(["clear"])
         print("Welcome to Hangman!")
         print("Here are your options:")
@@ -52,8 +54,9 @@ class Hangman:
         print("2. Help")
         print("3. Exit")
 
-    # Determine if user input at menu is valid
     def checkMenuInput(self):
+        """ Determine if player input at Hangman menu is valid. """
+
         while True:
             userInput = str(input("Enter your choice: "))
             if userInput not in ("1", "2", "3"):
@@ -68,8 +71,9 @@ class Hangman:
             elif userInput == "3":
                 break
 
-    # Check if the user entered a correct letter
     def checkUserLetter(self, letter):
+        """ Determine if a guess entered by the player is correct. """
+
         letterCorrect = False
 
         # Loop through the chosen word, checking each letter
@@ -86,8 +90,9 @@ class Hangman:
 
         subprocess.call(["clear"])
 
-    # Start game
     def playGame(self):
+        """ Play Hangman! """
+
         # Setup new game
         self.setup()
 
@@ -116,8 +121,9 @@ class Hangman:
             print("You win!")
 
 
-    # Determine if the game is over
     def isGameOver(self):
+        """ Check if the game is complete. """
+
         # Not exceeding the number of wrong guesses means game is not over
         # Any blank spaces also means the game is not over
         if (self.numWrongGuesses) < 6 and "_" in self.correctGuesses:
@@ -126,14 +132,17 @@ class Hangman:
         return True
 
     def showHelp(self):
+        """ Display the help screen for Hangman. """
+
         subprocess.call(["clear"])
         with open("./help.txt", 'r') as fileHandler:
             for line in fileHandler:
                 print(line)
         __ = input("Press any key to continue...")
 
-    # Show the progress of the user
     def showProgress(self):
+        """ Show the number of letters the player has guessed correctly. """
+
         for i in range(len(self.correctGuesses)):
             print(self.correctGuesses[i], end=" ")
         print("\n")
