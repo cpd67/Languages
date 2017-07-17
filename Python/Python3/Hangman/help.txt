@@ -1,0 +1,24 @@
+When you start a new game, you'll be shown output like this:
+
+---------------------------------
+|                               |
+                                |
+                                |
+                                |
+                                |
+                                |
+                                |
+                                |
+                                |
+                                |
+                                |
+                                |
+                         --------------
+_ _ _ _
+
+Enter a letter:
+
+The "_ _ _ _" is the word you have to guess.
+You must guess each letter of the word.
+If you guess incorrectly, a new piece of the Hangman drawing will be shown.
+You have six attempts before the Hangman drawing is complete and you lose the game.
